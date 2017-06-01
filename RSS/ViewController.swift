@@ -10,9 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var model = FeedModel()
+    var articles = [Article]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    
+        // Kick off the article download in the brackground
+        model.getArticles()
+        
     }
 
     override func didReceiveMemoryWarning() {
