@@ -20,6 +20,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Triggers when a segue is about to happen
+        // Gives you a chance to prepare the destination view controller
+        
+    }
 }
 
