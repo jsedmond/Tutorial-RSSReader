@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FeedModelDelegate {
 
     var model = FeedModel()
     var articles = [Article]()
@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     
         // Kick off the article download in the brackground
+        model.delegate = self
         model.getArticles()
         
     }
@@ -34,5 +35,12 @@ class ViewController: UIViewController {
         // Gives you a chance to prepare the destination view controller
         
     }
+    
+    // Implement FeedModelDelegate protocol functions
+    func articlesReady() {
+        // Get the articles from the model
+        articles = model.articles
+    }
+    
 }
 

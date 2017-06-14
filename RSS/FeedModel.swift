@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol FeedModelDelegate {
+    func articlesReady()
+}
+
 class FeedModel: NSObject, XMLParserDelegate {
     
     var url = "https://www.theverge.com/rss/index.xml"
     var articles = [Article]()
+    
+    var delegate:FeedModelDelegate?
     
     // Parsing variables
     var constructingArticle:Article?
@@ -91,6 +97,11 @@ class FeedModel: NSObject, XMLParserDelegate {
     // This function called when the parser finshes parsing the feed
     func parserDidEndDocument(_ parser: XMLParser) {
         // When the feed is parsed, we want to notify the delegate
+        
+        // Check if the delegate property is nil, if not, call the articlesReady function
+        if let actualDelegate = delegate {
+            actualDelegate.articlesReady()
+        }
     }
     
     
