@@ -59,8 +59,17 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
         // Get a cell to reuse
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
         
+        // Get article for this row
         let article = articles[indexPath.row]
-        cell.textLabel?.text = article.articleTitle
+        
+        // Get the text label
+        let label = cell.viewWithTag(1) as? UILabel
+        
+        if let actualLabel = label {
+            
+            // Set the label
+            actualLabel.text = article.articleTitle
+        }
         
         return cell
     }
