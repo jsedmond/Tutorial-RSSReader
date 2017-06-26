@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, FeedModelDelegate {
+class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource, UITableViewDelegate {
 
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     var model = FeedModel()
     var articles = [Article]()
     
@@ -17,6 +20,10 @@ class ViewController: UIViewController, FeedModelDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        // Set the view controller as the datasource and delegate
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         // Kick off the article download in the brackground
         model.delegate = self
         model.getArticles()
@@ -40,6 +47,28 @@ class ViewController: UIViewController, FeedModelDelegate {
     func articlesReady() {
         // Get the articles from the model
         articles = model.articles
+    }
+    
+    // Implement the tableView delegate functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Get a cell to reuse
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")!
+        
+        let article = articles[indexPath.row]
+        cell.textLabel?.text = article.articleTitle
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // User has tapped on a row
+        
+        // Trigger the segue to go to the article detail view
     }
     
 }
