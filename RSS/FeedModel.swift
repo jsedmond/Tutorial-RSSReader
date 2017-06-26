@@ -107,8 +107,4 @@ class FeedModel: NSObject, XMLParserDelegate {
     
     
     
-    
-    
-    
-    
 }
