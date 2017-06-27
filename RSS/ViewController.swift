@@ -15,6 +15,7 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
     
     var model = FeedModel()
     var articles = [Article]()
+    var selectedArticle:Article?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +36,6 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
 
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Triggers when a segue is about to happen
-        // Gives you a chance to prepare the destination view controller
-        
-    }
     
     // Implement FeedModelDelegate protocol functions
     func articlesReady() {
@@ -77,8 +71,27 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // User has tapped on a row
         
+        // Keep track of hte article that was selected
+        selectedArticle = articles[indexPath.row]
+        
         // Trigger the segue to go to the article detail view
+        performSegue(withIdentifier: "goToDetail", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Triggers when a segue is about to happen
+        
+        let detailVC = segue.destination as! DetailViewController
+        detailVC.articleToDisplay = selectedArticle
+        
+        // Gives you a chance to prepare the destination view controller
+        
+    }
+    
+    
+    
+    
     
 }
 

@@ -9,11 +9,32 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    
+    @IBOutlet weak var webView: UIWebView!
+    var articleToDisplay:Article?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if let article = articleToDisplay {
+            
+            // Article exists, load it in the webview
+            
+            // Create URK object
+            let u = URL(string: article.articleLink)
+            
+            if let url = u {
+                
+                // URL object exists, create URLRequest
+                let request = URLRequest(url: url)
+                
+                // Load the request in the webview
+                webView.loadRequest(request)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
