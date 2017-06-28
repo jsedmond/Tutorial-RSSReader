@@ -57,7 +57,7 @@ class FeedModel: NSObject, XMLParserDelegate {
         // We only want to save the characters, if the current tag is Title and Content
         if constructingArticle != nil {
             constructingString += string
-        }
+}
     }
     
     // This function called when the parser finds an ending tag
@@ -73,6 +73,24 @@ class FeedModel: NSObject, XMLParserDelegate {
         else if elementName == "content" {
             // Save the constructingSring as the Content for our constructingArticle
             constructingArticle?.articleBody = constructingString
+            
+            // Search for http
+            if let startRange = constructingString.range(of: "http") {
+                
+                // Found http. Now look for .jpg
+                if let endRange = constructingString.range(of: "jpg") {
+                    
+                    // Found .jpg. Now, get the substring
+                    let substring = constructingString.substring(with: startRange.lowerBound ..< endRange.upperBound)
+                    constructingArticle?.articleImageUrl = substring
+                }
+                else if let endRange = constructingString.range(of: ".png") {
+                    
+                    // Found .png.  Now get the subsring
+                    let substring = constructingString.substring(with: startRange.lowerBound ..< endRange.upperBound)
+                    constructingArticle?.articleImageUrl = substring
+                }
+            }
         }
         else if elementName == "link" {
             // Save the href attribute as the article url for our constructingArticle

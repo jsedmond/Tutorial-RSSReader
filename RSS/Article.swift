@@ -13,6 +13,6 @@ class Article: NSObject {
     var articleTitle = ""
     var articleBody = ""
     var articleLink = ""
-    var articleImageURL = ""
+    var articleImageUrl = ""
 
 }

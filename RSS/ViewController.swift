@@ -65,6 +65,51 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
             actualLabel.text = article.articleTitle
         }
         
+        // If the article has an image, then try to download it
+        if article.articleImageUrl != "" {
+            
+            // Get the image view
+            let imageview = cell.viewWithTag(2) as? UIImageView
+            
+            if let actualImageView = imageview {
+                
+                // Found the image view, now download the image
+                
+                // Create the URL object
+                let url = URL(string: article.articleImageUrl)
+                
+                if let actualUrl = url {
+                    
+                    // Create URLRequest object
+                    let request = URLRequest(url: actualUrl)
+                
+                    // Grab the current URLSession
+                    let session = URLSession.shared
+                
+                    // Create a URLSession Data Task
+                    let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
+                        
+                        // Fire off this work to update the UI to the main thread
+                        DispatchQueue.main.async {
+                            // The data has been downloaded. Create a UIImage object and assign it into the imageview
+                            if let actualData = data {
+                                actualImageView.image = UIImage(data: actualData)
+                            }
+                        }
+                        
+                       
+                        
+                    })
+                
+                    // Fire off the data task
+                    dataTask.resume()
+                }
+            }
+            
+        }
+        
+
+        
         return cell
     }
     

@@ -32,9 +32,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-Gh-1cG">
+                                                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-Gh-1cG">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GhI-aQ-tXh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0T5-Uf-OSd">
                                                     <rect key="frame" x="20" y="10" width="335" height="79.5"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
@@ -43,11 +47,15 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="GhI-aQ-tXh" firstAttribute="top" secondItem="4R4-lF-xMz" secondAttribute="top" id="0Km-ee-h7S"/>
                                                 <constraint firstItem="hjc-Gh-1cG" firstAttribute="top" secondItem="4R4-lF-xMz" secondAttribute="top" id="0kI-k1-toh"/>
+                                                <constraint firstAttribute="bottom" secondItem="GhI-aQ-tXh" secondAttribute="bottom" id="DCM-YN-3KK"/>
                                                 <constraint firstItem="hjc-Gh-1cG" firstAttribute="leading" secondItem="4R4-lF-xMz" secondAttribute="leading" id="HbR-kO-1FF"/>
                                                 <constraint firstAttribute="bottom" secondItem="0T5-Uf-OSd" secondAttribute="bottom" constant="10" id="JMt-WK-AW9"/>
+                                                <constraint firstItem="GhI-aQ-tXh" firstAttribute="leading" secondItem="4R4-lF-xMz" secondAttribute="leading" id="LWX-ot-4mX"/>
                                                 <constraint firstAttribute="bottom" secondItem="hjc-Gh-1cG" secondAttribute="bottom" id="aaw-WY-l26"/>
                                                 <constraint firstAttribute="trailing" secondItem="hjc-Gh-1cG" secondAttribute="trailing" id="d4p-Z7-53u"/>
+                                                <constraint firstAttribute="trailing" secondItem="GhI-aQ-tXh" secondAttribute="trailing" id="isN-dM-2ir"/>
                                                 <constraint firstItem="0T5-Uf-OSd" firstAttribute="top" secondItem="4R4-lF-xMz" secondAttribute="top" constant="10" id="jtH-Mr-e8T"/>
                                                 <constraint firstAttribute="trailing" secondItem="0T5-Uf-OSd" secondAttribute="trailing" constant="20" id="vJW-FO-P0E"/>
                                                 <constraint firstItem="0T5-Uf-OSd" firstAttribute="leading" secondItem="4R4-lF-xMz" secondAttribute="leading" constant="20" id="xXd-TG-zjV"/>
