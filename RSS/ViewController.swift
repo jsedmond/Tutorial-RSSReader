@@ -29,6 +29,29 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
         model.delegate = self
         model.getArticles()
         
+        // Create a UIImageView and add it to the navigation bar
+        createTitleIcon()
+    }
+    
+    func createTitleIcon() {
+        
+        // Create the UIImageView
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Create constraints
+        let heightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 33)
+        
+        let widthConstraint = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 41)
+        
+        // Add constraints
+        imageView.addConstraints([heightConstraint, widthConstraint])
+        
+        // Set the image
+        imageView.image = UIImage(named: "vergeicon")
+        
+        // Add it to the navigation bar
+        navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,11 +128,15 @@ class ViewController: UIViewController, FeedModelDelegate, UITableViewDataSource
                     dataTask.resume()
                 }
             }
-            
         }
-        
-
-        
+        else {
+            // Article has no image url, so set the imageview to nil image
+            let imageview = cell.viewWithTag(2) as? UIImageView
+            
+            if let actualImageView = imageview {
+                actualImageView.image = nil
+            }
+        }
         return cell
     }
     
